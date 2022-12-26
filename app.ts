@@ -3,6 +3,17 @@ import path from "path";
 import express from "express";
 import * as index from "./routes/index";
 import * as user from "./routes/user";
+import dotenv from "dotenv";
+import fs from 'fs';
+
+if (fs.existsSync(".env")) {
+  console.debug("Using .env file to supply config environment variables");
+  dotenv.config({ path: ".env" });
+} else {
+  console.debug("Using .env.example file to supply config environment variables");
+  dotenv.config({ path: ".env.example" });  // you can delete this after you create your own .env file!
+}
+
 
 var app = express();
 
