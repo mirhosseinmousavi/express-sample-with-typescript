@@ -6,6 +6,7 @@ import { makeRequest } from '../utils/helper';
  */
 export async function index(req: Request, res: Response){
     const baseUrl = process.env.BASE_URL;
+    console.log(`baseUrl: ${baseUrl}`);
     const response = await makeRequest({url: baseUrl});
     const {currentDateTime} = response.data;
     res.render('index', { title: `Express ${currentDateTime}` });
