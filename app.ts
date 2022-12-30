@@ -28,6 +28,6 @@ app.get('/users', user.list);
 app.get('/users/copy', user.copy);
 
 app.listen(port, function(){
-  console.log(`server starting on ${port}`);
+  const datetime = new Date().toUTCString();
+  console.log(datetime, '-',`server starting on ${port}`);
 });
-
