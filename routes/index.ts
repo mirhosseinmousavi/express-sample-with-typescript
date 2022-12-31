@@ -9,5 +9,8 @@ export async function index(req: Request, res: Response){
     // console.log(`baseUrl: ${baseUrl}`);
     // const response = await makeRequest({url: baseUrl});
     // const {currentDateTime} = response.data;
-    res.render('index', { blog: {title: "one"} /*,title: `Express ${currentDateTime}`*/ });
+
+    
+
+    res.render('index', { blog: {title: "one"} ,title: `Express ${req.flash("message")}` });
 };

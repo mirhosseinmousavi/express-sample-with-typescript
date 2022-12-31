@@ -1,5 +1,10 @@
 <%- include("header") %>
 
-<h1>This is a heading</h1>
+<h1><%- title %></h1>
+
+<% posts = ["salam"] %>
+<% posts.forEach(function (post) { %>
+    <%- include('components/post-content', { post: post }) %>
+  <% }) %>
 
 <%- include("footer") %>

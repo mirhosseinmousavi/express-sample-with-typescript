@@ -2,8 +2,11 @@
 import path from "path";
 import express from "express";
 import * as index from "./routes/index";
+import {secondPage} from "./routes/second-page";
 import * as user from "./routes/user";
+import flash from 'connect-flash';
 import dotenv from "dotenv";
+import session from 'express-session';
 import fs from 'fs';
 
 if (fs.existsSync(".env")) {
@@ -24,11 +27,19 @@ app.locals.blog = {
 const port = process.env.PORT || 3000;
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', index.index);
+app.use(session({
+	secret:'happy dog',
+	saveUninitialized: true,
+	resave: true
+}));
+
+app.use(flash());
+
+app.get('/',  index.index);
 app.get('/users', user.list);
+app.get('/second-page', secondPage);
 app.get('/users/copy', user.copy);
 
 app.listen(port, function(){
