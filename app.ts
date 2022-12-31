@@ -17,6 +17,10 @@ if (fs.existsSync(".env")) {
 
 var app = express();
 
+app.locals.blog = {
+  title: "test"
+};
+
 const port = process.env.PORT || 3000;
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
